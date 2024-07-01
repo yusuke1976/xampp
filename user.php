@@ -16,34 +16,12 @@
             background-attachment: fixed;
 
             font-family: 'Arial', sans-serif;
-            /* background-color: #f0f2f5; */
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-
-//            padding-top: 70px; /* ナビゲーションバーの高さ分のパディングを追加 */
         }
-
-//        .navbar {
-//            background-color: #ff9800;
-//            padding: 15px 0;
-//            position: fixed; /* ナビゲーションバーを固定 */
-//            top: 0; /* 画面上部に配置 */
-//            width: 100%; /* 幅を100%に設定 */
-//            z-index: 1000; /* 他の要素より前面に表示 */
-//        }
-        
-//        .navbar-brand {
-//            color: #ffffff !important;
-//            font-weight: 350;
-//            font-size: 1.2rem;
-//        }
-
-//        .navbar-brand:hover {
-//            text-decoration: underline;
-//        }
 
         #registration-form {
             background-color: white;
