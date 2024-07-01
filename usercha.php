@@ -6,8 +6,13 @@
     <title>ユーザー登録</title>
     <style>
         body {
+            background-image: url('./img/background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+
             font-family: 'Arial', sans-serif;
-            background-color: #f0f2f5;
+            /* background-color: #f0f2f5; */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -73,6 +78,19 @@
         .hidden {
             display: none;
         }
+        select{
+            width:200px;
+            height:40px;
+        }
+        #step2{
+            text-align: center;
+        }
+        #step3{
+            text-align: center;
+        }
+        #result{
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -85,8 +103,8 @@
         <!-- <h1>新規登録</h1> -->
         <div id="step1">
             <form id="step1-form">
-                <input type="text" placeholder="ユーザー名" required>
-                <input type="email" placeholder="メールアドレス" required>
+                <input type="text" id="username" placeholder="ユーザー名" required>
+                <input type="email" id="email" placeholder="メールアドレス" required>
                 <input type="password" name="password" id="password" placeholder="パスワード" required>
                 <input type="password" name="confirm"  oninput="CheckPassword(this)" placeholder="パスワード(確認)" required>
                 <button type="submit">次へ</button>
@@ -115,6 +133,7 @@
                 <option value="philosophy">哲学</option>
                 <option value="fiction">小説</option>
                 <option value="biography">伝記</option>
+                <option value="another">その他</option>
             </select>
             <button onclick="finishRegistration()">登録</button>
         </div>
@@ -196,7 +215,7 @@
         function getGenreText(genre) {
             const genres = {
                 'selfhelp': '自己啓発', 'psychology': '心理学', 'philosophy': '哲学',
-                'fiction': '小説', 'biography': '伝記'
+                'fiction': '小説', 'biography': '伝記' , 'another': 'その他'
             };
             return genres[genre] || '未選択';
         }
