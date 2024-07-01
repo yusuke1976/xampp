@@ -208,9 +208,12 @@
             document.getElementById(`step${step}`).classList.remove('hidden');
         }
 
+        
+        
         function finishRegistration() {
             const username = document.getElementById('username').value;
             const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
             const concern = document.getElementById('concern').value;
             const genre = document.getElementById('genre').value;
 
@@ -221,6 +224,13 @@
                 好きな本のジャンル: ${getGenreText(genre)}<br><br>
                 悩み解決のヒントが見つかります！
             `;
+
+            // 隠しフィールドに値をセット
+                document.getElementById('hiddenUsername').value = username;
+                document.getElementById('hiddenEmail').value = email;
+                document.getElementById('hiddenPassword').value = password;
+                document.getElementById('hiddenConcern').value = concern;
+                document.getElementById('hiddenGenre').value = genre;
 
             for (let i = 1; i <= 3; i++) {
                 document.getElementById(`step${i}`).classList.add('hidden');
