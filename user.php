@@ -30,13 +30,6 @@
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             width: 350px;
         }
-        /* .container {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 300px;
-        } */
         .image-container {
             text-align: center;
         }
@@ -50,7 +43,7 @@
             font-weight: bold;
             font-size: 1.2rem;     
         }
-        h1 {
+        h3 {
             text-align: center;
             color: #333;
             margin-bottom: 1.5rem;
@@ -98,20 +91,14 @@
     </style>
 </head>
 <body>
-<!-- <nav class="navbar navbar-expand-lg navbar-dark mb-4">
-        <div class="container">
-            <a class="navbar-brand" href="select.php">登録データ一覧</a>
-        </div>
-</nav> -->
-
 <div id="registration-form">
-    <!-- <div class="container"> -->
         <div class="image-container">
             <img src="./img/logo.jpg" alt="">
         </div>
         <p class="title">Bookshelf Of Worries</p>
-        <!-- <h1>新規登録</h1> -->
+        
         <div id="step1">
+            <h3>新規登録</h3>
             <form id="step1-form">
                 <input type="text" id="username" placeholder="ユーザー名" required>
                 <input type="email" id="email" placeholder="メールアドレス" required>
@@ -148,13 +135,8 @@
             <button onclick="finishRegistration()">登録</button>
         </div>
 
-        <!-- <div id="result" class="hidden">
-            <h2>登録完了</h2>
-            <p id="summary"></p>
-        </div> -->
-
         <div id="result" class="hidden">
-            <h2>登録完了</h2>
+            <h3>登録内容確認</h3>
             <p id="summary"></p>
             <form action="user_insert.php" method="post" id="insertForm">
                 <input type="hidden" id="hiddenUsername" name="username">
@@ -165,8 +147,6 @@
                 <button type="submit">登録を確定する</button>
             </form>
         </div>
-
-    <!-- </div> -->
 </div>
 
 <script>
@@ -185,19 +165,6 @@
         nextStep(2);
     });
 
-    
-    
-    // function CheckPassword(confirm){
-	// 	// 入力値取得
-	// 	var input1 = password.value;
-	// 	var input2 = confirm.value;
-	// 	// パスワード比較
-	// 	if(input1 != input2){
-	// 		confirm.setCustomValidity("入力値が一致しません。");
-	// 	}else{
-	// 		confirm.setCustomValidity('');
-	// 	}
-	// }
 </script>
 
 <script>
@@ -207,8 +174,6 @@
             }
             document.getElementById(`step${step}`).classList.remove('hidden');
         }
-
-        
         
         function finishRegistration() {
             const username = document.getElementById('username').value;
@@ -218,11 +183,11 @@
             const genre = document.getElementById('genre').value;
 
             document.getElementById('summary').innerHTML = `
-                ${username}さん、ご登録ありがとうございます。<br>
+                ${username}さん<br>
                 登録メールアドレス: ${email}<br>
                 現在の悩み: ${getConcernText(concern)}<br>
                 好きな本のジャンル: ${getGenreText(genre)}<br><br>
-                悩み解決のヒントが見つかります！
+                登録して、悩み解決へ！
             `;
 
             // 隠しフィールドに値をセット
