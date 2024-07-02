@@ -30,5 +30,5 @@ $status = $stmt->execute();
 if ($status == false) {
     sql_error($stmt);
 } else {
-    redirect("select.php");
+    redirect("login.php");
 }

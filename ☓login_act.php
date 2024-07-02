@@ -3,16 +3,17 @@
 session_start();
 
 //POST値
-$username = $_POST["username"]; 
-$password = $_POST["password"]; 
+$lid = $_POST["lid"]; //lid
+$lpw = $_POST["lpw"]; //lpw
 
 //1.  DB接続します
 include("funcs.php");
 $pdo = db_conn();
 
 //2. データ登録SQL作成
-$stmt = $pdo->prepare("SELECT * FROM gs_user_table5 WHERE username=:username AND life_flg=0"); 
-$stmt->bindValue(':username', $username, PDO::PARAM_STR);
+//* PasswordがHash化→条件はlidのみ！！
+$stmt = $pdo->prepare("SELECT * FROM gs_user_table WHERE lid=:lid AND life_flg=0"); 
+$stmt->bindValue(':lid', $lid, PDO::PARAM_STR);
 $status = $stmt->execute();
 
 //3. SQL実行時にエラーがある場合STOP
@@ -27,11 +28,12 @@ $val = $stmt->fetch();         //1レコードだけ取得する方法
 
 //5.該当１レコードがあればSESSIONに値を代入
 //入力したPasswordと暗号化されたPasswordを比較！[戻り値：true,false]
-$pw = password_verify($password, $val["password"]); //$lpw = password_hash($lpw, PASSWORD_DEFAULT);   //パスワードハッシュ化
+$pw = password_verify($lpw, $val["lpw"]); //$lpw = password_hash($lpw, PASSWORD_DEFAULT);   //パスワードハッシュ化
 if($pw){ 
   //Login成功時
   $_SESSION["chk_ssid"]  = session_id();
-  $_SESSION["username"]  = $val['username'];
+  // $_SESSION["kanri_flg"] = $val['kanri_flg'];
+  $_SESSION["name"]      = $val['name'];
   //Login成功時（select.phpへ）
   redirect("select.php");
 

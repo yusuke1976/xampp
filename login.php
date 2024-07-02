@@ -97,14 +97,13 @@
         </div>
         <p class="title">Bookshelf Of Worries</p>
         
-        <div name="form1" action="login_act.php" method="post"><!-- lLOGINogin_act.php は認証処理用のPHPです。 -->
-            <h3>ログイン</h3>
-            <form >
-                <input type="text" id="username" placeholder="ユーザー名" required>
+        <h3>ログイン</h3>
+            <form action="login_act.php" method="post">
+                <input type="text" name="username" id="username" placeholder="ユーザー名" required>
                 <input type="password" name="password" id="password" placeholder="パスワード" required>
                 <button type="submit">ログイン</button>
             </form>
-        </div>
+        
 </div>
 
 </body>
