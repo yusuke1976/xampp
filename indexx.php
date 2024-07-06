@@ -13,72 +13,92 @@
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            font-family: 'Georgia', serif;
+            font-family: 'Comic Sans MS', cursive;
+            overflow: hidden;
         }
         .title-container {
             text-align: center;
-            padding: 10px;
+            padding: 20px;
+            position: relative;
         }
         .title {
-            font-size: 2rem;
+            font-size: 3rem;
             font-weight: bold;
             color: #f8f8f8;
             letter-spacing: 0.2em;
             text-shadow: 0 0 10px rgba(255,255,255,0.5);
-            position: relative;
             padding: 20px;
             border: 4px solid #f8f8f8;
             box-shadow: 0 0 20px rgba(255,255,255,0.3);
             transition: all 0.3s ease;
             text-decoration: none;
             display: inline-block;
+            transform: rotate(-5deg);
+        }
+        .title:hover {
+            transform: scale(1.05) rotate(5deg);
+            box-shadow: 0 0 30px rgba(255,255,255,0.5);
         }
         .image-container {
             margin-top: 20px;
+            position: relative;
         }
         .bookshelf-image {
             max-width: 350px;
             height: auto;
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
         }
-
+        .bookshelf-image:hover {
+            transform: scale(1.1) rotate(360deg);
+        }
         .button-container {
             display: flex;
             gap: 20px;
+            margin-top: 30px;
         }
         .button {
-            padding: 12px 24px;
+            padding: 10px 20px;
             font-size: 1rem;
-            color: #f8f8f8;
-            background-color: transparent;
-            border: 2px solid #f8f8f8;
-            border-radius: 50px;
+            color: #1a1a1a;
+            background-color: #f8f8f8;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
             position: relative;
             overflow: hidden;
-            z-index: 1;
-            font-weight: bold;
-            font-family: "MS Pゴシック" ;
-        }
-        .button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 100%;
-            background-color: #f8f8f8;
-            transition: all 0.3s ease;
-            z-index: -1;
         }
         .button:hover {
-            color: #1a1a1a;
+            background-color: #e0e0e0;
+            transform: translateY(-3px) rotate(5deg);
+            box-shadow: 0 4px 8px rgba(255,255,255,0.2);
         }
-        .button:hover::before {
-            width: 100%;
+        .button::after {
+            content: '👻';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 20px;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        .button:hover::after {
+            top: 5px;
+            opacity: 1;
+        }
+        .floating-worry {
+            position: absolute;
+            font-size: 24px;
+            opacity: 0.5;
+            animation: float 10s infinite linear;
+        }
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-100vh) rotate(360deg); }
         }
         
         @media (max-width: 768px) {
@@ -91,7 +111,7 @@
             }
             .button {
                 font-size: 0.9rem;
-                padding: 10px 20px;
+                padding: 8px 16px;
             }
         }
         
@@ -106,7 +126,7 @@
             }
             .button-container {
                 flex-direction: column;
-                gap: 15px;
+                gap: 10px;
             }
         }
     </style>
@@ -117,13 +137,25 @@
     </div>    
 
     <div class="title-container">
-        <h1 class="title">Bookshelf Of Worries</h1>
+        <a href="user.php"><h1 class="title">Bookshelf Of Worries</h1></a>
     </div>
 
     <div class="button-container">
-        <a href="user.php" class="button">新規登録</a>
+        <a href="signup.php" class="button">新規登録</a>
         <a href="login.php" class="button">ログイン</a>
     </div>
-    
+
+    <script>
+        const worries = ['💸', '😱', '🤔', '😰', '🙀', '😓', '😖'];
+        for (let i = 0; i < 20; i++) {
+            const worry = document.createElement('div');
+            worry.className = 'floating-worry';
+            worry.style.left = `${Math.random() * 100}vw`;
+            worry.style.animationDuration = `${5 + Math.random() * 10}s`;
+            worry.style.animationDelay = `${Math.random() * 5}s`;
+            worry.textContent = worries[Math.floor(Math.random() * worries.length)];
+            document.body.appendChild(worry);
+        }
+    </script>
 </body>
 </html>

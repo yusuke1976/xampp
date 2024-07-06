@@ -33,52 +33,44 @@
             text-decoration: none;
             display: inline-block;
         }
+        /* .title:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255,255,255,0.5);
+        } */
+        /* .title::after {
+            top: auto;
+            bottom: -15px;
+        } */
         .image-container {
             margin-top: 20px;
         }
         .bookshelf-image {
-            max-width: 350px;
+            max-width: 350px; /* ロゴの最大幅を300pxに制限 */
             height: auto;
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(255,255,255,0.3);
         }
 
         .button-container {
+            /* margin-top: 30px; */
             display: flex;
             gap: 20px;
         }
         .button {
-            padding: 12px 24px;
+            padding: 10px 20px;
             font-size: 1rem;
-            color: #f8f8f8;
-            background-color: transparent;
-            border: 2px solid #f8f8f8;
-            border-radius: 50px;
+            color: #1a1a1a;
+            background-color: #f8f8f8;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-            font-weight: bold;
-            font-family: "MS Pゴシック" ;
-        }
-        .button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 100%;
-            background-color: #f8f8f8;
-            transition: all 0.3s ease;
-            z-index: -1;
         }
         .button:hover {
-            color: #1a1a1a;
-        }
-        .button:hover::before {
-            width: 100%;
+            background-color: #e0e0e0;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(255,255,255,0.2);
         }
         
         @media (max-width: 768px) {
@@ -87,11 +79,11 @@
                 padding: 15px;
             }
             .bookshelf-image {
-                max-width: 250px;
+                max-width: 250px; /* タブレットサイズでさらに小さく */
             }
             .button {
                 font-size: 0.9rem;
-                padding: 10px 20px;
+                padding: 8px 16px;
             }
         }
         
@@ -102,12 +94,11 @@
                 letter-spacing: 0.1em;
             }
             .bookshelf-image {
-                max-width: 200px;
+                max-width: 200px; /* スマートフォンサイズでより小さく */
             }
             .button-container {
                 flex-direction: column;
-                gap: 15px;
-            }
+                gap: 10px;
         }
     </style>
 </head>

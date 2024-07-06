@@ -46,39 +46,49 @@
         .button-container {
             display: flex;
             gap: 20px;
+            margin-top: 30px;
         }
-        .button {
-            padding: 12px 24px;
-            font-size: 1rem;
+        .book-button {
+            width: 120px;
+            height: 180px;
+            background-color: #8B4513;
+            border: none;
+            border-radius: 5px 15px 15px 5px;
             color: #f8f8f8;
-            background-color: transparent;
-            border: 2px solid #f8f8f8;
-            border-radius: 50px;
+            font-family: 'Georgia', serif;
+            font-size: 1rem;
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            text-decoration: none;
             position: relative;
             overflow: hidden;
-            z-index: 1;
-            font-weight: bold;
-            font-family: "MS Pゴシック" ;
         }
-        .button::before {
+        .book-button::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 100%;
+            left: 10px;
+            top: 10px;
+            bottom: 10px;
+            width: 3px;
             background-color: #f8f8f8;
-            transition: all 0.3s ease;
-            z-index: -1;
         }
-        .button:hover {
-            color: #1a1a1a;
+        .book-button::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 10px;
+            height: 3px;
+            background-color: #f8f8f8;
         }
-        .button:hover::before {
-            width: 100%;
+        .book-button:hover {
+            transform: translateY(-5px) rotateY(-10deg);
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
         }
         
         @media (max-width: 768px) {
@@ -89,9 +99,10 @@
             .bookshelf-image {
                 max-width: 250px;
             }
-            .button {
+            .book-button {
+                width: 100px;
+                height: 150px;
                 font-size: 0.9rem;
-                padding: 10px 20px;
             }
         }
         
@@ -106,7 +117,12 @@
             }
             .button-container {
                 flex-direction: column;
-                gap: 15px;
+                gap: 20px;
+            }
+            .book-button {
+                width: 90px;
+                height: 135px;
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -121,8 +137,8 @@
     </div>
 
     <div class="button-container">
-        <a href="user.php" class="button">新規登録</a>
-        <a href="login.php" class="button">ログイン</a>
+        <a href="user.php" class="book-button">新規登録</a>
+        <a href="login.php" class="book-button">ログイン</a>
     </div>
     
 </body>

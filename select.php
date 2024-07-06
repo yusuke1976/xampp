@@ -1,20 +1,30 @@
 <?php
+//0. SESSION開始！！
+session_start();
+
 require_once('funcs.php');
 
 //１. DB接続します
 $pdo = db_conn();
+
+//LOGINチェック → funcs.phpへ関数化しましょう！
+sschk();
 
 // 検索キーワードを取得
 $search_keyword = isset($_GET['search']) ? $_GET['search'] : '';
 
 //２．データ取得SQL作成
 if (!empty($search_keyword)) {
-    $stmt = $pdo->prepare("SELECT * FROM gs_bm_table WHERE book LIKE :keyword OR worry LIKE :keyword OR coment LIKE :keyword");
-    $stmt->bindValue(':keyword', '%'.$search_keyword.'%', PDO::PARAM_STR);
+  $stmt = $pdo->prepare("SELECT * FROM gs_bm_table WHERE (book LIKE :keyword OR worry LIKE :keyword OR coment LIKE :keyword) AND id = :id");
+  $stmt->bindValue(':keyword', '%'.$search_keyword.'%', PDO::PARAM_STR);
+  $stmt->bindValue(':id', $_SESSION['id'], PDO::PARAM_INT);
 } else {
-    $stmt = $pdo->prepare("SELECT * FROM gs_bm_table");
+  $stmt = $pdo->prepare("SELECT * FROM gs_bm_table WHERE id = :id");
+  $stmt->bindValue(':id', $_SESSION['id'], PDO::PARAM_INT);
 }
 $status = $stmt->execute();
+
+
 
 //３．データ表示
 $view = "";
@@ -71,7 +81,9 @@ if ($status == false) {
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark mb-4">
   <div class="container">
+    <?=$_SESSION["username"]?>さん、一緒に悩みを解決しましょう！
     <a class="navbar-brand" href="index2.php">データ登録</a>
+    <a class="navbar-brand" href="logout.php">ログアウト</a>
   </div>
 </nav>
 
