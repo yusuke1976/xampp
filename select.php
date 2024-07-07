@@ -14,14 +14,22 @@ sschk();
 $search_keyword = isset($_GET['search']) ? $_GET['search'] : '';
 
 //２．データ取得SQL作成
-if (!empty($search_keyword)) {
-  $stmt = $pdo->prepare("SELECT * FROM gs_bm_table WHERE (book LIKE :keyword OR worry LIKE :keyword OR coment LIKE :keyword) AND username = :username");
-    
-  $stmt->bindValue(':keyword', '%'.$search_keyword.'%', PDO::PARAM_STR);
-  $stmt->bindValue(':username', $_SESSION['username'], PDO::PARAM_STR);
+if ($_SESSION['username'] === 'admin') {
+  if (!empty($search_keyword)) {
+      $stmt = $pdo->prepare("SELECT * FROM gs_bm_table WHERE book LIKE :keyword OR worry LIKE :keyword OR coment LIKE :keyword");
+      $stmt->bindValue(':keyword', '%'.$search_keyword.'%', PDO::PARAM_STR);
+  } else {
+      $stmt = $pdo->prepare("SELECT * FROM gs_bm_table");
+  }
 } else {
-  $stmt = $pdo->prepare("SELECT * FROM gs_bm_table WHERE username = :username");
-  $stmt->bindValue(':username', $_SESSION['username'], PDO::PARAM_STR);
+  if (!empty($search_keyword)) {
+      $stmt = $pdo->prepare("SELECT * FROM gs_bm_table WHERE (book LIKE :keyword OR worry LIKE :keyword OR coment LIKE :keyword) AND username = :username");
+      $stmt->bindValue(':keyword', '%'.$search_keyword.'%', PDO::PARAM_STR);
+      $stmt->bindValue(':username', $_SESSION['username'], PDO::PARAM_STR);
+  } else {
+      $stmt = $pdo->prepare("SELECT * FROM gs_bm_table WHERE username = :username");
+      $stmt->bindValue(':username', $_SESSION['username'], PDO::PARAM_STR);
+  }
 }
 $status = $stmt->execute();
 
